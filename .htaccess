@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+ 
+    # 检查请求的文件是否存在
+    RewriteCond %{REQUEST_FILENAME} !-f
+    # 检查请求的目录是否存在
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # 如果文件和目录都不存在，应用以下规则
+    RewriteRule ^xizi\.php/(.*)$ /xizi.php?/$1 [L,QSA]
+ 
+    # 重复上述条件检查，但应用另一个规则
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /index.php?/$1 [L,QSA]
+</IfModule>
